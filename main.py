@@ -2,7 +2,7 @@
 
 from openpyxl import load_workbook
 
-from textLists import skillList
+from localVariables import skillList
 
 source_folder = "d:\Work\Coding\\battleboard_data_extraction\\battleboard-data-extraction\source_files\\"
 
