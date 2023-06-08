@@ -13,9 +13,21 @@ print(test_workbook.sheetnames)
 
 sheet = test_workbook['The Character']
 
-# # openpyxl starts at 1 for row and column
-# for i in range(2,sheet.max_row):
+skillMap = {}
 
-print(len(skillList))
+# openpyxl starts at 1 for row and column
+for i in range(14,397):
+    
+    if sheet.cell(row=i,column=3).value != None:
+        # allow for offset between row number on sheet and position in list
+        try:
+            skillMap[skillList[(i-14)]] = sheet.cell(row=i,column=3).value
+        except Exception as e:
+            print("Incorrect Number of skills, likely wrong battleboard version")
+            raise e
 
+# print(sheet.cell(row=15,column=3).value)
+
+# print(len(skillList))
+print(skillMap)
 
