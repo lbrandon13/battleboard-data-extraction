@@ -2,7 +2,7 @@
 
 from openpyxl import load_workbook
 
-from localVariables import skillList
+from localVariables import skillList, raceClassDict, guildList
 
 source_folder = "d:\Work\Coding\\battleboard_data_extraction\\battleboard-data-extraction\source_files\\"
 
@@ -30,6 +30,10 @@ for file in fileList:
     currentWorkbook = load_workbook(source_folder + file)
     skillSheet = currentWorkbook['The Character']
 
+    characterClass = raceClassDict[skillSheet.cell(row=2,column=2).value]['class']
+    characterRace = raceClassDict[skillSheet.cell(row=2,column=2).value]['race']
+    primaryGuild = guildList[(skillSheet.cell(row=3,column=2).value - 1)]
+
     # openpyxl starts at 1 for row and column
     for i in range(14,397):
         
@@ -46,8 +50,6 @@ for file in fileList:
                 skillMap[skillName]['ranks'] = skillMap[skillName]['ranks'] + rankValue
                 skillMap[skillName]['characters'] = skillMap[skillName]['characters'] + 1 
                   
-
-# print(sheet.cell(row=15,column=3).value)
 
 # print(len(skillList))
 # print(skillMap)
