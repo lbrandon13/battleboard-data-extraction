@@ -24,6 +24,7 @@ fileList = ["Wulfric_baneguard_current_v_2021.1.xlsm",
 #             } 
 
 skillMap = {}
+spellList = []
 
 for file in fileList:
 
@@ -50,31 +51,37 @@ for file in fileList:
                 skillMap[skillName]['ranks'] = skillMap[skillName]['ranks'] + rankValue
                 skillMap[skillName]['characters'] = skillMap[skillName]['characters'] + 1 
 
-result = Workbook()
-sheet = result.active
-sheet.title = "Skill summary"
+    spellSheet = currentWorkbook['Magic']
 
-sheet.cell(row=1,column=1).value = 'Skill Name'
-sheet.cell(row=1,column=2).value = 'Average Ranks'
-sheet.cell(row=1,column=3).value = 'Character Count'
+    for i in range(12,427):
+        spellList.append(spellSheet.cell(row=i,column=2).value)
 
-rowNum = 2
-for skill in skillList:
-    sheet.cell(row=rowNum, column=1).value = skill
+# result = Workbook()
+# sheet = result.active
+# sheet.title = "Skill summary"
 
-    if skill in skillMap:
-        numCharacters = skillMap[skill]['characters']
-        sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
-        sheet.cell(row=rowNum, column=3).value = numCharacters
-    else:
-        sheet.cell(row=rowNum, column=2).value = 0
-        sheet.cell(row=rowNum, column=3).value = 0
+# sheet.cell(row=1,column=1).value = 'Skill Name'
+# sheet.cell(row=1,column=2).value = 'Average Ranks'
+# sheet.cell(row=1,column=3).value = 'Character Count'
 
-    rowNum += 1
+# rowNum = 2
+# for skill in skillList:
+#     sheet.cell(row=rowNum, column=1).value = skill
+
+#     if skill in skillMap:
+#         numCharacters = skillMap[skill]['characters']
+#         sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
+#         sheet.cell(row=rowNum, column=3).value = numCharacters
+#     else:
+#         sheet.cell(row=rowNum, column=2).value = 0
+#         sheet.cell(row=rowNum, column=3).value = 0
+
+#     rowNum += 1
 
 
-result.save(source_folder + "results.xlsx")
+# result.save(source_folder + "results.xlsx")
 
 # print(len(skillList))
 # print(skillMap)
+print(spellList)
 
