@@ -56,15 +56,19 @@ sheet.title = "Skill summary"
 
 sheet.cell(row=1,column=1).value = 'Skill Name'
 sheet.cell(row=1,column=2).value = 'Average Ranks'
+sheet.cell(row=1,column=3).value = 'Character Count'
 
 rowNum = 2
 for skill in skillList:
     sheet.cell(row=rowNum, column=1).value = skill
 
     if skill in skillMap:
-        sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / skillMap[skill]['characters'])
+        numCharacters = skillMap[skill]['characters']
+        sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
+        sheet.cell(row=rowNum, column=3).value = numCharacters
     else:
         sheet.cell(row=rowNum, column=2).value = 0
+        sheet.cell(row=rowNum, column=3).value = 0
 
     rowNum += 1
 
