@@ -2,7 +2,7 @@
 
 from openpyxl import load_workbook, Workbook
 
-from localVariables import skillList, raceClassDict, guildList
+from localVariables import skillList, raceClassDict, guildList, spellList
 
 source_folder = "d:\Work\Coding\\battleboard_data_extraction\\battleboard-data-extraction\source_files\\"
 
@@ -24,7 +24,20 @@ fileList = ["Wulfric_baneguard_current_v_2021.1.xlsm",
 #             } 
 
 skillMap = {}
-spellList = []
+
+# spell name maps to dict with 4 leys, each to track the number of times bought by a character of a given archetype
+# should look like
+# spellMap = {'blindness' : {'warrior' : 0,
+#                            'scout' : 2,
+#                            'acolyte' : 1,
+#                            'mage' : 4},
+#             'lightning bolt' : {'warrior' : 0,
+#                                 'scout' : 2,
+#                                 'acolyte' : 1,
+#                                 'mage' : 4},
+#             } 
+
+spellMap = {}
 
 for file in fileList:
 
@@ -54,7 +67,24 @@ for file in fileList:
     spellSheet = currentWorkbook['Magic']
 
     for i in range(12,427):
-        spellList.append(spellSheet.cell(row=i,column=2).value)
+
+        spellBought = spellSheet.cell(row=i,column=4).value
+        # print(spellBought)
+        # break
+        spellName = spellList[(i-12)]
+
+        if spellBought == None or spellBought == 0:
+            continue
+        else:
+            if spellName not in spellMap:
+                spellMap[spellName] = {'Warrior' : 0,
+                                       'Scout' : 0,
+                                       'Acolyte' : 0,
+                                       'Mage' : 0}
+            
+            spellMap[spellName][characterClass] += 1
+
+        
 
 # result = Workbook()
 # sheet = result.active
@@ -83,5 +113,6 @@ for file in fileList:
 
 # print(len(skillList))
 # print(skillMap)
-print(spellList)
+# print(spellList)
+print(spellMap)
 
