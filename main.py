@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openpyxl import load_workbook
+from openpyxl import load_workbook, Workbook
 
 from localVariables import skillList, raceClassDict, guildList
 
@@ -49,7 +49,27 @@ for file in fileList:
             else:
                 skillMap[skillName]['ranks'] = skillMap[skillName]['ranks'] + rankValue
                 skillMap[skillName]['characters'] = skillMap[skillName]['characters'] + 1 
-                  
+
+result = Workbook()
+sheet = result.active
+sheet.title = "Skill summary"
+
+sheet.cell(row=1,column=1).value = 'Skill Name'
+sheet.cell(row=1,column=2).value = 'Average Ranks'
+
+rowNum = 2
+for skill in skillList:
+    sheet.cell(row=rowNum, column=1).value = skill
+
+    if skill in skillMap:
+        sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / skillMap[skill]['characters'])
+    else:
+        sheet.cell(row=rowNum, column=2).value = 0
+
+    rowNum += 1
+
+
+result.save(source_folder + "results.xlsx")
 
 # print(len(skillList))
 # print(skillMap)
