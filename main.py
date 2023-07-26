@@ -116,10 +116,27 @@ spellSheet.cell(row=1,column=3).value = 'Times bought Acolyte'
 spellSheet.cell(row=1,column=4).value = 'Times bought Scout'
 spellSheet.cell(row=1,column=5).value = 'Times bought Warrior'
 
+rowNum = 2
+for spell in spellList:
+    spellSheet.cell(row=rowNum, column=1).value = spell
+
+    if spell in spellMap:
+        spellSheet.cell(row=rowNum, column=2).value = spellMap[spell]['Mage']
+        spellSheet.cell(row=rowNum, column=3).value = spellMap[spell]['Acolyte']
+        spellSheet.cell(row=rowNum, column=4).value = spellMap[spell]['Scout']
+        spellSheet.cell(row=rowNum, column=5).value = spellMap[spell]['Warrior']
+    else:
+        spellSheet.cell(row=rowNum, column=2).value = 0
+        spellSheet.cell(row=rowNum, column=3).value = 0
+        spellSheet.cell(row=rowNum, column=4).value = 0
+        spellSheet.cell(row=rowNum, column=5).value = 0
+
+    rowNum += 1
+
 result.save(source_folder + "results.xlsx")
 
 # print(len(skillList))
 # print(skillMap)
 # print(spellList)
-print(spellMap)
+# print(spellMap)
 
