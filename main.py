@@ -87,24 +87,24 @@ for file in fileList:
         
 
 result = Workbook()
-sheet = result.active
-sheet.title = "Skill summary"
+skillSheet = result.active
+skillSheet.title = "Skill summary"
 
-sheet.cell(row=1,column=1).value = 'Skill Name'
-sheet.cell(row=1,column=2).value = 'Average Ranks'
-sheet.cell(row=1,column=3).value = 'Character Count'
+skillSheet.cell(row=1,column=1).value = 'Skill Name'
+skillSheet.cell(row=1,column=2).value = 'Average Ranks'
+skillSheet.cell(row=1,column=3).value = 'Character Count'
 
 rowNum = 2
 for skill in skillList:
-    sheet.cell(row=rowNum, column=1).value = skill
+    skillSheet.cell(row=rowNum, column=1).value = skill
 
     if skill in skillMap:
         numCharacters = skillMap[skill]['characters']
-        sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
-        sheet.cell(row=rowNum, column=3).value = numCharacters
+        skillSheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
+        skillSheet.cell(row=rowNum, column=3).value = numCharacters
     else:
-        sheet.cell(row=rowNum, column=2).value = 0
-        sheet.cell(row=rowNum, column=3).value = 0
+        skillSheet.cell(row=rowNum, column=2).value = 0
+        skillSheet.cell(row=rowNum, column=3).value = 0
 
     rowNum += 1
 
