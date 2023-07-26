@@ -86,30 +86,37 @@ for file in fileList:
 
         
 
-# result = Workbook()
-# sheet = result.active
-# sheet.title = "Skill summary"
+result = Workbook()
+sheet = result.active
+sheet.title = "Skill summary"
 
-# sheet.cell(row=1,column=1).value = 'Skill Name'
-# sheet.cell(row=1,column=2).value = 'Average Ranks'
-# sheet.cell(row=1,column=3).value = 'Character Count'
+sheet.cell(row=1,column=1).value = 'Skill Name'
+sheet.cell(row=1,column=2).value = 'Average Ranks'
+sheet.cell(row=1,column=3).value = 'Character Count'
 
-# rowNum = 2
-# for skill in skillList:
-#     sheet.cell(row=rowNum, column=1).value = skill
+rowNum = 2
+for skill in skillList:
+    sheet.cell(row=rowNum, column=1).value = skill
 
-#     if skill in skillMap:
-#         numCharacters = skillMap[skill]['characters']
-#         sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
-#         sheet.cell(row=rowNum, column=3).value = numCharacters
-#     else:
-#         sheet.cell(row=rowNum, column=2).value = 0
-#         sheet.cell(row=rowNum, column=3).value = 0
+    if skill in skillMap:
+        numCharacters = skillMap[skill]['characters']
+        sheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
+        sheet.cell(row=rowNum, column=3).value = numCharacters
+    else:
+        sheet.cell(row=rowNum, column=2).value = 0
+        sheet.cell(row=rowNum, column=3).value = 0
 
-#     rowNum += 1
+    rowNum += 1
 
+spellSheet = result.create_sheet("Spells Summary")
 
-# result.save(source_folder + "results.xlsx")
+spellSheet.cell(row=1,column=1).value = 'Spell Name'
+spellSheet.cell(row=1,column=2).value = 'Times bought Mage'
+spellSheet.cell(row=1,column=3).value = 'Times bought Acolyte'
+spellSheet.cell(row=1,column=4).value = 'Times bought Scout'
+spellSheet.cell(row=1,column=5).value = 'Times bought Warrior'
+
+result.save(source_folder + "results.xlsx")
 
 # print(len(skillList))
 # print(skillMap)
