@@ -100,22 +100,59 @@ skillSheet = result.active
 skillSheet.title = "Skill summary"
 
 skillSheet.cell(row=1,column=1).value = 'Skill Name'
-skillSheet.cell(row=1,column=2).value = 'Average Ranks'
-skillSheet.cell(row=1,column=3).value = 'Character Count'
+skillSheet.cell(row=1,column=2).value = 'Average of total'
+skillSheet.cell(row=1,column=3).value = 'Total Count'
+skillSheet.cell(row=1,column=4).value = 'Average of Acolyte'
+skillSheet.cell(row=1,column=5).value = 'Acolyte Count'
+skillSheet.cell(row=1,column=6).value = 'Average of Mage'
+skillSheet.cell(row=1,column=7).value = 'Mage Count'
+skillSheet.cell(row=1,column=8).value = 'Average of Scout'
+skillSheet.cell(row=1,column=9).value = 'Scout Count'
+skillSheet.cell(row=1,column=10).value = 'Average of Warrior'
+skillSheet.cell(row=1,column=11).value = 'Warrior Count'
 
-# rowNum = 2
-# for skill in skillList:
-#     skillSheet.cell(row=rowNum, column=1).value = skill
 
-#     if skill in skillMap:
-#         numCharacters = skillMap[skill]['characters']
-#         skillSheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
-#         skillSheet.cell(row=rowNum, column=3).value = numCharacters
-#     else:
-#         skillSheet.cell(row=rowNum, column=2).value = 0
-#         skillSheet.cell(row=rowNum, column=3).value = 0
+rowNum = 2
+for skill in skillList:
+    skillSheet.cell(row=rowNum, column=1).value = skill
 
-#     rowNum += 1
+    if skill in skillMap:
+
+        acolyteRanks = skillMap[skill]['ranksAcolyte']
+        acolyteNum = skillMap[skill]['charactersAcolyte']
+        mageRanks = skillMap[skill]['ranksMage']
+        mageNum = skillMap[skill]['charactersMage']
+        scoutRanks = skillMap[skill]['ranksScout']
+        scoutNum = skillMap[skill]['charactersScout']
+        warriorRanks = skillMap[skill]['ranksWarrior']
+        warriorNum = skillMap[skill]['charactersWarrior']
+
+        totalRanks = acolyteRanks + mageRanks + scoutRanks + warriorRanks
+        totalNum = acolyteNum + mageNum + scoutNum + warriorNum
+
+        skillSheet.cell(row=rowNum, column=2).value = totalRanks / totalNum if totalNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=3).value = totalRanks
+        skillSheet.cell(row=rowNum, column=4).value = acolyteRanks / acolyteNum if acolyteNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=5).value = acolyteNum
+        skillSheet.cell(row=rowNum, column=6).value = mageRanks / mageNum if mageNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=7).value = mageNum
+        skillSheet.cell(row=rowNum, column=8).value = scoutRanks / scoutNum if scoutNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=9).value = scoutNum
+        skillSheet.cell(row=rowNum, column=10).value = warriorRanks / warriorNum if warriorNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=11).value = warriorNum
+    else:
+        skillSheet.cell(row=rowNum, column=2).value = 0
+        skillSheet.cell(row=rowNum, column=3).value = 0
+        skillSheet.cell(row=rowNum, column=4).value = 0
+        skillSheet.cell(row=rowNum, column=5).value = 0
+        skillSheet.cell(row=rowNum, column=6).value = 0
+        skillSheet.cell(row=rowNum, column=7).value = 0
+        skillSheet.cell(row=rowNum, column=8).value = 0
+        skillSheet.cell(row=rowNum, column=9).value = 0
+        skillSheet.cell(row=rowNum, column=10).value = 0
+        skillSheet.cell(row=rowNum, column=11).value = 0
+
+    rowNum += 1
 
 spellSheet = result.create_sheet("Spells Summary")
 
@@ -155,7 +192,7 @@ for spell in spellList:
 result.save(source_folder + "results.xlsx")
 
 # print(len(skillList))
-print(skillMap)
+# print(skillMap)
 # print(spellList)
 # print(spellMap)
 
