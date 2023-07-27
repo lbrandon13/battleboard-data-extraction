@@ -111,25 +111,35 @@ for skill in skillList:
 spellSheet = result.create_sheet("Spells Summary")
 
 spellSheet.cell(row=1,column=1).value = 'Spell Name'
-spellSheet.cell(row=1,column=2).value = 'Times bought Mage'
-spellSheet.cell(row=1,column=3).value = 'Times bought Acolyte'
-spellSheet.cell(row=1,column=4).value = 'Times bought Scout'
-spellSheet.cell(row=1,column=5).value = 'Times bought Warrior'
+spellSheet.cell(row=1,column=2).value = 'Times bought Total'
+spellSheet.cell(row=1,column=3).value = 'Times bought Mage'
+spellSheet.cell(row=1,column=4).value = 'Times bought Acolyte'
+spellSheet.cell(row=1,column=5).value = 'Times bought Scout'
+spellSheet.cell(row=1,column=6).value = 'Times bought Warrior'
 
 rowNum = 2
 for spell in spellList:
     spellSheet.cell(row=rowNum, column=1).value = spell
 
     if spell in spellMap:
-        spellSheet.cell(row=rowNum, column=2).value = spellMap[spell]['Mage']
-        spellSheet.cell(row=rowNum, column=3).value = spellMap[spell]['Acolyte']
-        spellSheet.cell(row=rowNum, column=4).value = spellMap[spell]['Scout']
-        spellSheet.cell(row=rowNum, column=5).value = spellMap[spell]['Warrior']
+        mageTotal = spellMap[spell]['Mage']
+        acolyteTotal = spellMap[spell]['Acolyte']
+        scoutTotal = spellMap[spell]['Scout']
+        warriorTotal = spellMap[spell]['Warrior']
+        
+        total = mageTotal + acolyteTotal + scoutTotal + warriorTotal
+
+        spellSheet.cell(row=rowNum, column=2).value = total
+        spellSheet.cell(row=rowNum, column=3).value = mageTotal
+        spellSheet.cell(row=rowNum, column=4).value = acolyteTotal
+        spellSheet.cell(row=rowNum, column=5).value = scoutTotal
+        spellSheet.cell(row=rowNum, column=6).value = warriorTotal
     else:
         spellSheet.cell(row=rowNum, column=2).value = 0
         spellSheet.cell(row=rowNum, column=3).value = 0
         spellSheet.cell(row=rowNum, column=4).value = 0
         spellSheet.cell(row=rowNum, column=5).value = 0
+        spellSheet.cell(row=rowNum, column=6).value = 0
 
     rowNum += 1
 
