@@ -55,14 +55,23 @@ for file in fileList:
         skillName = skillList[(i-14)]
         rankValue = skillSheet.cell(row=i,column=3).value 
 
-        if rankValue != None:
-
+        if rankValue == None or rankValue == 0:
+            continue
+        else:
             if skillName not in skillMap:
-                skillMap[skillName] = {'ranks' : rankValue,
-                                       'characters' : 1}
-            else:
-                skillMap[skillName]['ranks'] = skillMap[skillName]['ranks'] + rankValue
-                skillMap[skillName]['characters'] = skillMap[skillName]['characters'] + 1 
+                # skillMap[skillName] = {'ranks' : rankValue,
+                #                        'characters' : 1}
+                skillMap[skillName] = {'ranksAcolyte' : 0,
+                                        'charactersAcolyte' : 0,
+                                        'ranksMage' : 0,
+                                        'charactersMage' : 0,
+                                        'ranksScout' : 0,
+                                        'charactersScout' : 0,
+                                        'ranksWarrior' : 0,
+                                        'charactersWarrior' : 0,}
+            
+            skillMap[skillName]['ranks' + characterClass] = skillMap[skillName]['ranks' + characterClass] + rankValue
+            skillMap[skillName]['characters' + characterClass] = skillMap[skillName]['characters' + characterClass] + 1 
 
     spellSheet = currentWorkbook['Magic']
 
@@ -94,19 +103,19 @@ skillSheet.cell(row=1,column=1).value = 'Skill Name'
 skillSheet.cell(row=1,column=2).value = 'Average Ranks'
 skillSheet.cell(row=1,column=3).value = 'Character Count'
 
-rowNum = 2
-for skill in skillList:
-    skillSheet.cell(row=rowNum, column=1).value = skill
+# rowNum = 2
+# for skill in skillList:
+#     skillSheet.cell(row=rowNum, column=1).value = skill
 
-    if skill in skillMap:
-        numCharacters = skillMap[skill]['characters']
-        skillSheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
-        skillSheet.cell(row=rowNum, column=3).value = numCharacters
-    else:
-        skillSheet.cell(row=rowNum, column=2).value = 0
-        skillSheet.cell(row=rowNum, column=3).value = 0
+#     if skill in skillMap:
+#         numCharacters = skillMap[skill]['characters']
+#         skillSheet.cell(row=rowNum, column=2).value = (skillMap[skill]['ranks'] / numCharacters)
+#         skillSheet.cell(row=rowNum, column=3).value = numCharacters
+#     else:
+#         skillSheet.cell(row=rowNum, column=2).value = 0
+#         skillSheet.cell(row=rowNum, column=3).value = 0
 
-    rowNum += 1
+#     rowNum += 1
 
 spellSheet = result.create_sheet("Spells Summary")
 
@@ -146,7 +155,7 @@ for spell in spellList:
 result.save(source_folder + "results.xlsx")
 
 # print(len(skillList))
-# print(skillMap)
+print(skillMap)
 # print(spellList)
 # print(spellMap)
 
