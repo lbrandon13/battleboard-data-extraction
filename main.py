@@ -102,14 +102,14 @@ skillSheet.title = "Skill summary"
 skillSheet.cell(row=1,column=1).value = 'Skill Name'
 skillSheet.cell(row=1,column=2).value = 'Average of total'
 skillSheet.cell(row=1,column=3).value = 'Total Count'
-skillSheet.cell(row=1,column=4).value = 'Average of Acolyte'
-skillSheet.cell(row=1,column=5).value = 'Acolyte Count'
-skillSheet.cell(row=1,column=6).value = 'Average of Mage'
-skillSheet.cell(row=1,column=7).value = 'Mage Count'
-skillSheet.cell(row=1,column=8).value = 'Average of Scout'
-skillSheet.cell(row=1,column=9).value = 'Scout Count'
-skillSheet.cell(row=1,column=10).value = 'Average of Warrior'
-skillSheet.cell(row=1,column=11).value = 'Warrior Count'
+skillSheet.cell(row=1,column=5).value = 'Average of Acolyte'
+skillSheet.cell(row=1,column=6).value = 'Acolyte Count'
+skillSheet.cell(row=1,column=8).value = 'Average of Mage'
+skillSheet.cell(row=1,column=9).value = 'Mage Count'
+skillSheet.cell(row=1,column=11).value = 'Average of Scout'
+skillSheet.cell(row=1,column=12).value = 'Scout Count'
+skillSheet.cell(row=1,column=14).value = 'Average of Warrior'
+skillSheet.cell(row=1,column=15).value = 'Warrior Count'
 
 
 rowNum = 2
@@ -132,25 +132,25 @@ for skill in skillList:
 
         skillSheet.cell(row=rowNum, column=2).value = totalRanks / totalNum if totalNum != 0 else 0
         skillSheet.cell(row=rowNum, column=3).value = totalRanks
-        skillSheet.cell(row=rowNum, column=4).value = acolyteRanks / acolyteNum if acolyteNum != 0 else 0
-        skillSheet.cell(row=rowNum, column=5).value = acolyteNum
-        skillSheet.cell(row=rowNum, column=6).value = mageRanks / mageNum if mageNum != 0 else 0
-        skillSheet.cell(row=rowNum, column=7).value = mageNum
-        skillSheet.cell(row=rowNum, column=8).value = scoutRanks / scoutNum if scoutNum != 0 else 0
-        skillSheet.cell(row=rowNum, column=9).value = scoutNum
-        skillSheet.cell(row=rowNum, column=10).value = warriorRanks / warriorNum if warriorNum != 0 else 0
-        skillSheet.cell(row=rowNum, column=11).value = warriorNum
+        skillSheet.cell(row=rowNum, column=5).value = acolyteRanks / acolyteNum if acolyteNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=6).value = acolyteNum
+        skillSheet.cell(row=rowNum, column=8).value = mageRanks / mageNum if mageNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=9).value = mageNum
+        skillSheet.cell(row=rowNum, column=11).value = scoutRanks / scoutNum if scoutNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=12).value = scoutNum
+        skillSheet.cell(row=rowNum, column=14).value = warriorRanks / warriorNum if warriorNum != 0 else 0
+        skillSheet.cell(row=rowNum, column=15).value = warriorNum
     else:
         skillSheet.cell(row=rowNum, column=2).value = 0
         skillSheet.cell(row=rowNum, column=3).value = 0
-        skillSheet.cell(row=rowNum, column=4).value = 0
         skillSheet.cell(row=rowNum, column=5).value = 0
         skillSheet.cell(row=rowNum, column=6).value = 0
-        skillSheet.cell(row=rowNum, column=7).value = 0
         skillSheet.cell(row=rowNum, column=8).value = 0
         skillSheet.cell(row=rowNum, column=9).value = 0
-        skillSheet.cell(row=rowNum, column=10).value = 0
         skillSheet.cell(row=rowNum, column=11).value = 0
+        skillSheet.cell(row=rowNum, column=12).value = 0
+        skillSheet.cell(row=rowNum, column=14).value = 0
+        skillSheet.cell(row=rowNum, column=15).value = 0
 
     rowNum += 1
 
@@ -158,10 +158,10 @@ spellSheet = result.create_sheet("Spells Summary")
 
 spellSheet.cell(row=1,column=1).value = 'Spell Name'
 spellSheet.cell(row=1,column=2).value = 'Times bought Total'
-spellSheet.cell(row=1,column=3).value = 'Times bought Mage'
-spellSheet.cell(row=1,column=4).value = 'Times bought Acolyte'
-spellSheet.cell(row=1,column=5).value = 'Times bought Scout'
-spellSheet.cell(row=1,column=6).value = 'Times bought Warrior'
+spellSheet.cell(row=1,column=4).value = 'Times bought Mage'
+spellSheet.cell(row=1,column=5).value = 'Times bought Acolyte'
+spellSheet.cell(row=1,column=6).value = 'Times bought Scout'
+spellSheet.cell(row=1,column=7).value = 'Times bought Warrior'
 
 rowNum = 2
 for spell in spellList:
@@ -176,16 +176,16 @@ for spell in spellList:
         total = mageTotal + acolyteTotal + scoutTotal + warriorTotal
 
         spellSheet.cell(row=rowNum, column=2).value = total
-        spellSheet.cell(row=rowNum, column=3).value = mageTotal
-        spellSheet.cell(row=rowNum, column=4).value = acolyteTotal
-        spellSheet.cell(row=rowNum, column=5).value = scoutTotal
-        spellSheet.cell(row=rowNum, column=6).value = warriorTotal
+        spellSheet.cell(row=rowNum, column=4).value = mageTotal
+        spellSheet.cell(row=rowNum, column=5).value = acolyteTotal
+        spellSheet.cell(row=rowNum, column=6).value = scoutTotal
+        spellSheet.cell(row=rowNum, column=7).value = warriorTotal
     else:
         spellSheet.cell(row=rowNum, column=2).value = 0
-        spellSheet.cell(row=rowNum, column=3).value = 0
         spellSheet.cell(row=rowNum, column=4).value = 0
         spellSheet.cell(row=rowNum, column=5).value = 0
         spellSheet.cell(row=rowNum, column=6).value = 0
+        spellSheet.cell(row=rowNum, column=7).value = 0
 
     rowNum += 1
 
