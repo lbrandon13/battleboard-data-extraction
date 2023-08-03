@@ -1,0 +1,6 @@
+This program is intended for use by the Heroquest LARP rules team.
+
+Battleboard files need to be placed within the source files and then added to the fileList variable to be used.
+
+Since the files assume the lists for skills, spells etc, the file will need to be in one of the following versions:
+v.2021.1
