@@ -36,6 +36,7 @@ skillMap = {}
 #                                 'acolyte' : 1,
 #                                 'mage' : 4},
 #             } 
+#
 
 spellMap = {}
 
